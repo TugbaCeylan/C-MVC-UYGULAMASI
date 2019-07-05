@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@Html.ActionLink("Kullanıcıları Yönet", "Index", "User", null, new { @class = "btn btn-warning btn-block " })
+<br />
+@Html.ActionLink("Kategorileri Yönet", "Index", "Category", null, new { @class = "btn btn-warning btn-block" })
+<br />
+@Html.ActionLink("Gönderileri Yönet", "Index", "Default1", null, new { @class = "btn btn-warning btn-block" })
+<br />
+@Html.ActionLink("Yorumları Yönet", "Index", "Comment", null, new { @class = "btn btn-warning btn-block" })
+<br />
+@Html.ActionLink("Görselleri Yönet", "Index", "PostImage", null, new { @class = "btn btn-warning btn-block" })
+
+
+
+

@@ -1,0 +1,25 @@
+﻿
+@{
+    AppleCatEntities db = new AppleCatEntities();
+}
+
+@if (Session["oturum"] != null)
+{
+    if (Convert.ToInt32(Session["rolId"]) == 1)
+    {
+        <ul>
+            <li> @Html.ActionLink("Admin", "Admin", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+            <li> @Html.ActionLink("Ana Sayfa", "Home", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+            <li> @Html.ActionLink("Profil", "Profil", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+            <li> @Html.ActionLink("Çıkış", "Exit", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li> @Html.ActionLink("Ana Sayfa", "Home", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+            <li> @Html.ActionLink("Profil", "Profil", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+            <li> @Html.ActionLink("Çıkış", "Exit", "Home", new { style = "text-decoration:none;color:#000;font-size:large;" })</li>
+        </ul>
+    }
+}

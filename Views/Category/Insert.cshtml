@@ -1,0 +1,31 @@
+﻿@model Category
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Insert", "Category", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Kategori Adı</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.CategoryName)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button>Kaydet</button>
+            </td>
+        </tr>
+    </table>
+}
+
+@if (TempData["Message"] != null)
+{
+    <div style="background-color: #2882a9; color: white; padding: 7px 15px; margin-top:15px;">
+        @TempData["Message"]
+    </div>
+}

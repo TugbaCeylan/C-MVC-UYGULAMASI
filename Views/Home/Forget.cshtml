@@ -1,0 +1,55 @@
+﻿@model User
+@{
+    ViewBag.Title = "Forget";
+}
+
+<h2>Şifre Doğrulama</h2>
+
+
+<form method="post">
+    <table id="LoginTablo">
+        <tr>
+            <td>Kullanıcı Adı</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>E-Mail</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.Email)
+            </td>
+        </tr>
+        <tr>
+            <td>Gizli Soru</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.PasswordQuestion)
+            </td>
+        </tr>
+        <tr>
+            <td>Cevap</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.PaswordAnswer)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button id="btnDoğrula">Doğrula</button>
+            </td>
+        </tr>
+      
+    </table>
+    @if (TempData["Message"] != null)
+    {
+        <div style="background-color: #ff6a00; color: white; padding: 7px 15px; margin-top:15px;">
+            @TempData["Message"]
+        </div>
+    }
+
+  
+
+</form>

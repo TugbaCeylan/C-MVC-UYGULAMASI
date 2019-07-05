@@ -1,0 +1,13 @@
+﻿@{
+    AppleCatEntities db = new AppleCatEntities();
+    List<Category> cList = db.Categories.ToList();
+}
+
+
+<ul>
+    @foreach (Category item in cList.Where(c => c.IsDeleted == false).OrderBy(c => c.CategoryName).ToList())
+    {
+        <li id="Category">@Html.ActionLink(item.CategoryName, "Posts", "Home", new { id = item.CategoryID }, new { @class = "btn btn-warning btn-block" })</li>
+        <br />
+    }
+</ul>

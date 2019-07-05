@@ -1,0 +1,109 @@
+﻿@model Tuple<Post, List<PostImage>, Comment, List<Comment>>
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Item2.Count > 0)
+{
+    <div id="Slider">
+        <div id="JSlider">
+            <div class="JSlider">
+                <ul>
+                    @foreach (PostImage item in Model.Item2)
+                    {
+                        <li>
+                            <a href="#">
+                                <img id="PostImage" src="~/Content/images/@item.ImagePath" />
+                            </a>
+                            <div class="desc">
+                                @*<div class="descColumnist">
+                                       <img src="~/Content/images/avatars/Symbol.png" />
+                                    </div>*@
+                                <div class="descRight">
+                                    <h2><a href="#">@Model.Item1.Title</a></h2>
+                                    <h3>@Model.Item1.User.FirstName @Model.Item1.User.LastName</h3>
+
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<div class="Post">
+
+    <div class="PostMessage">
+        @Html.Raw(Model.Item1.Text)
+    </div>
+</div>
+
+
+
+<h2 style="margin-top: 20px;"><span class="subspan">BU PAYLAŞIMA YORUM EKLEYİN</span></h2>
+
+@using (Ajax.BeginForm("Post", "Home", new { id = Model.Item1.PostID }, new AjaxOptions { OnSuccess = "success" }))
+{
+    <div id="CommentForms">
+        @*<div class="CommentRow">
+                <div class="CommentCol1">Adınız :</div>
+                <div class="CommentCol2">
+                    @Html.TextBoxFor(model => model.Item3.User.FirstName, new { @class = "txtBox" })
+                </div>
+            </div>
+            <div class="CommentRow">
+                <div class="CommentCol1">Soyadınız :</div>
+                <div class="CommentCol2">
+                    @Html.TextBoxFor(model => model.Item3.User.LastName, new { @class = "txtBox" })
+                </div>
+            </div>*@
+        <div class="CommentRow">
+            <div class="CommentCol1">Yorumunuz :</div>
+            <div class="CommentCol2">
+                @Html.TextAreaFor(model => model.Item3.Text, new { @class = "txtArea", cols = "20", rows = "4" })
+            </div>
+        </div>
+        <div class="CommentRow">
+            <div class="CommentCol1">&nbsp;</div>
+            <div class="CommentCol2">
+                <button name="btnKaydet" class="btnButton">Yorumu Kaydet</button>
+            </div>
+        </div>
+    </div>
+}
+
+@*<h2><span class="subspan">Yorumlar</span></h2>*@
+<div id="Comments">
+    @if (Model.Item4.Count > 0)
+    {
+        foreach (Comment item in Model.Item4)
+        {
+            <div class="Comment">
+                <span>@item.User.FirstName &nbsp @item.User.LastName <span>@item.PublishDate</span></span>
+                @item.Text
+            </div>
+        }
+    }
+    else
+    {
+        <h2><span>Bu makalede yorum bulunmamaktadır.</span></h2>
+    }
+</div>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    function success(result) {
+        if (result != null) {
+            $('form')[0].reset();
+            $('#Comments').html('');
+            $.each(result, function (key, value) {
+                $('#Comments').append('<div class="Comment"><span>' + value.FullName + '<span>' + value.PublishDate + '</span></span>' + value.Text + '</div>')
+            })
+        }
+    }
+</script>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MVCOneMagic.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-block" })</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FirstName)
+            </th>
+
+        </tr>
+    </thead>
+   
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Post.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CommentID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.CommentID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CommentID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+   
+</table>

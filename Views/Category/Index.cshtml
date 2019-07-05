@@ -1,0 +1,34 @@
+﻿@model List<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">@Html.ActionLink("Kategori Ekle", "Insert", "Category", null, new { @class = "btn btn-success btn-block" }) </div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><strong>Kategori Adı</strong></th>
+            <th><strong>Silindi mi?</strong></th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Category item in Model)
+        {
+            <tr>
+                <td>@item.CategoryName</td>
+                <td>@item.IsDeleted</td>
+                <td>@Html.ActionLink("Güncelle", "Edit", "Category", new { id = item.CategoryID }, new { @class = "btn btn-warning" })</td>
+                <td>@Html.ActionLink("Sil", "Delete", "Category", new { id = item.CategoryID }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+

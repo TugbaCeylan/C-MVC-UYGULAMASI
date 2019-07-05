@@ -1,0 +1,73 @@
+﻿@model User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/images/temp/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="Header">
+        <div id="Headerin">
+            <span id="Logo">
+                <img src="~/Content/images/temp/onemagic.jpg" />
+            </span>
+            <div id="Login">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    <ul>
+                        <li>@Html.TextBoxFor(model => model.FirstName, new { placeholder = "İsim" })</li>
+                        <li>@Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })</li>
+                        <li><button id="btnGirisYap"> Giriş Yap</button></li>
+                        <br />
+                        @Html.ActionLink("Şifremi Unuttum", "Forget", "Home", new { style = "float: right; display: inline;" })
+                    </ul>
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <div id="Container">
+        <div id="Content">
+            <div id="txt">
+                <p> Merhaba hayvan dostu güzel insan.</p><br /><p>Artık hayvan sever arkadaşlarınla bulışman daha kolay. Bu pltformda hayvan bakımı ile ilgili tecrübelerini herkesle paylaşabilirsin.</p><br /><p>Bakıma muhtaç hayvanlara bakabilecek, yardım edebilecek insanlara daha rahat ulaşabilirsin. Sahiplenilmelerine yardımcı olabilir ve yahut minik arkadaşlarımızı sahiplenebilirsin.</p><br /><p>Evcil hayvanına arkadaş arıyorsan buradan bulabilir ya da artık kullanmadığın eşyalarını ihtiyacı olanlara ulaştırabilirsin.</p>
+            </div>
+        </div>
+
+        <div id="Registry">
+            @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+            {
+
+                <ul>
+                    <li>@Html.TextBoxFor(Model => Model.FirstName, new { placeholder = "AD:" })</li>
+                    <li>@Html.TextBoxFor(Model => Model.LastName, new { placeholder = "SOYAD:" })</li>
+                    <li>@Html.TextBoxFor(Model => Model.Password, new { placeholder = "ŞİFRE:" })</li>
+                    <li>@Html.TextBoxFor(Model => Model.PasswordQuestion, new { placeholder = "GİZLİ SORU:" })</li>
+                    <li>@Html.TextBoxFor(Model => Model.PaswordAnswer, new { placeholder = "CEVAP:" })</li>
+                    <li>@Html.TextBoxFor(Model => Model.Email, new { placeholder = "MAİL:" })</li>
+                    <li><button id="btnKaydol">Kaydet</button> </li>
+                </ul>
+                if (TempData["Message"] != null)
+                {
+                    <div style="background-color: #ff6a00; color: white; padding: 7px 15px; margin-top: 15px;">
+                        @TempData["Message"]
+                    </div>
+                }
+            }
+
+
+        </div>
+
+
+    </div>
+</body>
+</html>

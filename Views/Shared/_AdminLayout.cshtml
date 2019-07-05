@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/images/temp/Style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="Header">
+        <div id="Headerin">
+            <span id="Logo">
+                <img src="~/Content/images/temp/onemagic.jpg" />
+            </span>
+            <span id="Login">
+                <span id="Nav">
+                    @Html.Partial("_NavigationPartial")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div id="Container">
+        @RenderBody()
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </div>
+  
+
+</body>
+</html>

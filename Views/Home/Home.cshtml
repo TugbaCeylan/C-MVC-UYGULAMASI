@@ -1,0 +1,9 @@
+﻿@model List<Post>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("_PostPartial", Model)

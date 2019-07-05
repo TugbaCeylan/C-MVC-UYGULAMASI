@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MVCOneMagic.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-block" }) </div>
+
+
+<table class="table table-hover ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PasswordQuestion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaswordAnswer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PasswordQuestion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaswordAnswer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.RoleName)
+                </td>
+
+                <td>@Html.ActionLink("Edit", "Edit", new { id = item.UserID }, new { @class = "btn btn-danger" })</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = item.UserID }, new { @class = "btn btn-danger" }) </td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger" })</td>
+                
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>

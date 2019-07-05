@@ -1,0 +1,85 @@
+﻿@model Post
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: '#textarea',
+        height: 250,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+        image_advtab: true,
+        templates: [
+          { title: 'Test template 1', content: 'Test 1' },
+          { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+    tinymce.init({
+        selector: '#txtIcerik'
+    });
+</script>
+
+
+
+@using (Html.BeginForm("Insert", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+
+        <tr>
+            <td>Başlık</td>
+            <td>: </td>
+            <td>
+                @Html.TextBoxFor(model => model.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>Kategorisi</td>
+            <td>: </td>
+            <td>
+                @Html.DropDownList("CategoryID", String.Empty)
+            </td>
+        </tr>
+        <tr>
+            <td>Resimler</td>
+            <td>: </td>
+            <td>
+                <input type="file" name="fluResim" multiple />
+            </td>
+        </tr>
+        <tr>
+            <td>İçerik</td>
+            <td>: </td>
+            <td>
+                @Html.TextAreaFor(model => model.Text, new { id = "txtIcerik" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button>Kaydet</button>
+            </td>
+        </tr>
+    </table>
+}
+
+@if (TempData["Message"] != null)
+{
+    @TempData["Message"]
+}
+
+
